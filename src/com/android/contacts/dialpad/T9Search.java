@@ -294,8 +294,10 @@ class T9Search {
                 if (o.numberMatchId != -1) {
                     Spannable s = (Spannable) holder.number.getText();
                     int numberStart = o.numberMatchId;
+                    if (nameStart <= o.name.length() && nameStart + mPrevInput.length()) {
                     s.setSpan(new ForegroundColorSpan(mContext.getResources().getColor(android.R.color.holo_blue_dark)),
                             numberStart, numberStart + mPrevInput.length(), Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+                    }
                     holder.number.setText(s);
                 }
                 if (o.photo != null)

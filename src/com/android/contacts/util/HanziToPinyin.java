@@ -1302,8 +1302,6 @@ public class HanziToPinyin {
         for (Token token : tokens) {
             if (token.type == Token.PINYIN) {
                 result.append(token.target);
-            } else {
-                result.append(token.source);
             }
         }
         return result.toString();
@@ -1327,8 +1325,6 @@ public class HanziToPinyin {
         for (Token token : tokens) {
             if (token.type == Token.PINYIN) {
                 result.append(token.target.charAt(0));
-            } else {
-                result.append("#");
             }
         }
         return result.toString();
