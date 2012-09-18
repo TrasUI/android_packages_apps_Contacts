@@ -30,7 +30,7 @@ public class NameToNumberChinese extends NameToNumber {
 
     @Override
     public String convert(String name) {
-        String t9=null;
+        String t9 = null;
 
         String hzPinYin = HanziToPinyin.getInstance().getFirstPinYin(name).toLowerCase();
         

@@ -27,6 +27,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.database.ContentObserver;
@@ -230,26 +231,26 @@ public class DialpadFragment extends Fragment
 
     private static final String PREF_DIGITS_FILLED_BY_INTENT = "pref_digits_filled_by_intent";
 
-// Add LOCALE_CHAGNED event receiver.
-           private final BroadcastReceiver mLocaleChangedReceiver = new BroadcastReceiver() {
-                @Override
-                    public void onReceive(Context context, Intent intent) {
-                    Log.v(TAG, "mIntentReceiver  onReceive  intent.getAction(): " + intent.getAction());
-	            if (intent.getAction().equals(Intent.ACTION_LOCALE_CHANGED)) {
-                        if (isT9On()) {
-                            sT9Search = new T9Search(getActivity());
-                        }
-                    }
+    // Add LOCALE_CHAGNED event receiver.
+    private final BroadcastReceiver mLocaleChangedReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Log.v(TAG, "mIntentReceiver  onReceive  intent.getAction(): " + intent.getAction());
+            if (intent.getAction().equals(Intent.ACTION_LOCALE_CHANGED)) {
+                if (isT9On()) {
+                    sT9Search = new T9Search(getActivity());
                 }
-           };
+            }
+        }
+    };
 
-           @Override
-            public void onDestroy() {
-               // TODO Auto-generated method stub
-                super.onDestroy();
+    @Override
+    public void onDestroy() {
+        // TODO Auto-generated method stub
+        super.onDestroy();
 
-                getActivity().unregisterReceiver(mLocaleChangedReceiver);
-           }
+        getActivity().unregisterReceiver(mLocaleChangedReceiver);
+    }
 
     @Override
     public void beforeTextChanged(CharSequence s, int start, int count, int after) {
